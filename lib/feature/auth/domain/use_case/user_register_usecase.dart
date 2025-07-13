@@ -6,25 +6,29 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class RegisterUserParams extends Equatable {
-  final String username;
+  final String name;
   final String email;
+  final String phoneNumber;
   final String password;
 
   const RegisterUserParams({
-    required this.username,
+    required this.name,
     required this.email,
+    required this.phoneNumber,
     required this.password,
+    required String username,
   });
 
   //intial constructor
   const RegisterUserParams.intial({
-    required this.username,
+    required this.name,
     required this.email,
+    required this.phoneNumber,
     required this.password,
   });
 
   @override
-  List<Object?> get props => [username, email, password];
+  List<Object?> get props => [name, email, phoneNumber, password];
 }
 
 class UserRegisterUsecase
@@ -36,10 +40,12 @@ class UserRegisterUsecase
   @override
   Future<Either<Failure, void>> call(RegisterUserParams params) {
     final userEntity = UserEntity(
-      userId: "",
-      confirmpassword: params.password,
+      username: params.name,
       email: params.email,
+      phoneNumber: params.phoneNumber,
       password: params.password,
+      confirmpassword: '',
+      name: '',
     );
     return _userRepository.registerUser(userEntity);
   }

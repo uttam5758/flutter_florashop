@@ -11,8 +11,17 @@ class UserEntity extends Equatable {
     required this.email,
     required this.password,
     required this.confirmpassword,
+    required username,
+    required String phoneNumber,
+    required String name,
   });
 
   @override
   List<Object?> get props => [userId, email, password, confirmpassword];
+
+  get name => null;
+
+  get phoneNumber => null;
+
+  static empty() {}
 }
